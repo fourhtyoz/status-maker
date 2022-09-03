@@ -28,27 +28,22 @@ def pick_topic(d):
     return choice
 
 def pick_words(d, topic):
-    l = []
-    keys = ()
+    words = []
+    keys = []
     for key in d[topic.lower()].keys():
-        keys.add(key)
+        keys.append(key)
 
     counter = 0
-    while counter <= 3:
-        l.append(random.choice(d[topic.lower()][keys[0]]))
+    while counter < len(keys):
+        words.append(random.choice(d[topic.lower()][keys[counter]]))
         counter += 1
-    print(l)
-
-pick_words(word_bank, pick_topic(word_bank))
-
-# print(pick_words(word_bank, pick_topic(word_bank)))  
+    return words
           
+def make_status(l):
+    status = ' '.join(l)
+    print('GENERATING...')
+    for i in range(3):
+        print(i)
+    print(f'GENERATED STATUS IS: {status}')
 
-def pick_verb(d):
-    pass
-
-def pick_adjective(d):
-    pass
-
-def make_status():
-    pass
+make_status(pick_words(word_bank, pick_topic(word_bank)))
